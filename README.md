@@ -140,7 +140,7 @@ For more detailed authentication instructions, refer to the [full authentication
 
 The GoSystem Tax Return API provides a Postman collection with pre-configured requests for all API endpoints:
 
-1. Download the Synergy.postman_collection.json file from your documentation package
+1. Request the postman_collection.json from your GST API rep.
 2. In Postman, click on "Import" in the upper left corner
 3. Drag and drop the collection file or browse to select it
 4. Click "Import" to add the collection to your workspace
