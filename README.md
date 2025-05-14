@@ -7,6 +7,11 @@
   - [Obtaining API Credentials](#obtaining-api-credentials)
   - [Authentication Flow](#authentication-flow)
   - [Making Your First API Call](#making-your-first-api-call)
+- [Using Postman](#using-postman)
+  - [Setting Up Postman](#setting-up-postman)
+  - [Importing the Collection](#importing-the-collection)
+  - [Configuring Environment Variables](#configuring-environment-variables)
+  - [Testing API Calls](#testing-api-calls)
 - [Authentication](#authentication)
 - [API Rate Limits](#api-rate-limits)
 - [Tax Return Operations](#tax-return-operations)
@@ -120,6 +125,78 @@ Authorization: Bearer [Your Access Token]
 ```
 
 For more detailed authentication instructions, refer to the [full authentication documentation](../Authorize/README.md).
+
+## Using Postman
+
+[Postman](https://www.postman.com/) is a popular API testing tool that makes it easy to test and explore APIs. This section covers how to set up Postman to work with the GoSystem Tax Return API.
+
+### Setting Up Postman
+
+1. Download and install Postman from [postman.com](https://www.postman.com/downloads/)
+2. Create a free account or sign in to your existing account
+3. Create a new workspace for your GoSystem API testing
+
+### Importing the Collection
+
+The GoSystem Tax Return API provides a Postman collection with pre-configured requests for all API endpoints:
+
+1. Download the Synergy.postman_collection.json file from your documentation package
+2. In Postman, click on "Import" in the upper left corner
+3. Drag and drop the collection file or browse to select it
+4. Click "Import" to add the collection to your workspace
+
+The imported collection contains organized folders for all available API endpoints, including authorization, tax return operations, and e-file attachments.
+
+### Configuring Environment Variables
+
+To make the most of the Postman collection, set up environment variables to store your credentials and reuse them across requests:
+
+1. Click on "Environments" in the left sidebar
+2. Click the "+" icon to create a new environment (e.g., "GoSystem API")
+3. Add the following variables:
+   - `client_id`: Your Consumer Key from the Thomson Reuters Developer Portal
+   - `client_secret`: Your Consumer Secret from the Developer Portal
+   - `account`: Your GoSystem firm/account code
+   - `api_token`: Your API token from GoSystem Tax RS
+   - `base64token`: Leave this empty (will be populated automatically)
+   - `token`: Leave this empty (will be populated by the authentication response)
+   - `refreshtoken`: Leave this empty (will be populated by the authentication response)
+   - `authToken`: Leave this empty (will be populated by the open tax return response)
+   - `taxReturnSessionToken`: Leave this empty (will be populated by the open tax return response)
+4. Click "Save"
+5. Select your new environment from the environment dropdown in the upper right corner
+
+### Testing API Calls
+
+Now you're ready to start testing API calls:
+
+1. **Authentication**: 
+   - Navigate to the "Authorize" > "GST Authorize" folder
+   - Run the "/oauth2/v1/auth-code" request first (this generates an authorization code)
+   - Then run the "/oauth2/v1/token" request (this exchanges the code for an access token)
+   - The authentication scripts will automatically save the token to your environment variables
+
+2. **Opening a Tax Return**:
+   - Navigate to the "GoSystem Tax Return Live API" folder
+   - Find and run the "Use to open a Tax Return for editing" request
+   - Modify the request body with your tax return details
+   - The scripts will automatically save the session tokens to your environment variables
+
+3. **Working with Tax Return Data**:
+   - After opening a tax return, you can use the other requests in the collection
+   - Try the "Use to retrieve fields" request to fetch data
+   - Or the "Use to save fields" request to update data
+
+4. **Closing the Tax Return**:
+   - Always remember to close your tax return when finished using the "Use to close an already opened Tax Return" request
+
+The Postman collection includes pre-configured request bodies and authentication helpers, making it much easier to explore and learn the API.
+
+**Tips for Using Postman**:
+- Use the "Pre-request Script" and "Tests" tabs to see how authentication and token handling are implemented
+- Check the "Console" tab (at the bottom) to debug request/response details
+- Save your successful requests to reuse them later
+- Use Postman's "Code" button to generate code snippets in your preferred programming language
 
 ## Authentication
 
