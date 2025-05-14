@@ -18,6 +18,7 @@
   - [Opening a Tax Return](#opening-a-tax-return)
   - [Saving Fields](#saving-fields)
   - [Retrieving Fields](#retrieving-fields)
+  - [Identifying Fields](#identifying-fields)
   - [Working with Groups](#working-with-groups)
   - [Saving Field Attributes](#saving-field-attributes)
   - [Getting Diagnostics](#getting-diagnostics)
@@ -382,6 +383,22 @@ taxReturnSessionToken: [value from open response]
   ]
 }
 ```
+
+### Identifying Fields
+
+To identify the fields you want to read or write using the `retrieve-fields` and `save-fields` endpoints, you can use the GoSystems frontend UI:
+
+1. Right-click on the field you want to identify
+2. Select "Field Info" from the context menu
+
+![Field Info Context Menu](Data%20field%20right%20click.png)
+
+3. A dialog box will open showing details about the field
+4. Look for the "XrefName" value (e.g., "RS.ENTITYNAME")
+
+![Field Info Dialog](field_info_dialog.png)
+
+This "XrefName" value can be used as the "fieldId" parameter when reading and writing to the field using the `retrieve-fields` and `save-fields` endpoints.
 
 ### Working with Groups
 
