@@ -215,9 +215,8 @@ To ensure optimal performance, prevent server overload, and promote fair use amo
 
 ### Rate Limit Policies
 
-- **Hourly Limit**: 10,000 requests per hour for each GoFileRoom firm
-- **Reset Interval**: The request count resets at the top of each hour (e.g., 1:00, 2:00)
-- **Spike Arrest Policy**: Maximum of 250 calls per second, which protects against traffic surges and prevents performance issues
+- **Rate Limit**: 100 calls per minute
+- **Reset Interval**: The request count resets every minute
 
 ### When Rate Limits Are Exceeded
 
